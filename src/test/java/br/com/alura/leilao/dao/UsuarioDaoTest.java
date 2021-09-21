@@ -12,6 +12,7 @@ import org.junit.jupiter.api.Test;
 
 import br.com.alura.leilao.model.Usuario;
 import br.com.alura.leilao.util.JPAUtil;
+import br.com.alura.leilao.util.builder.UsuarioBuilder;
 
 class UsuarioDaoTest {
 
@@ -52,7 +53,12 @@ class UsuarioDaoTest {
 	}
 	
 	private Usuario criarUsuario() {
-		Usuario usuario = new Usuario("fulano", "fulano@gmail.com", "12345678");
+		Usuario usuario = new UsuarioBuilder()
+			.comNome("fulano")
+			.comEmail("fulano@gmail.com")
+			.comSenha("12345678")
+			.criar();
+		
 		em.persist(usuario);
 		return usuario;
 	}
